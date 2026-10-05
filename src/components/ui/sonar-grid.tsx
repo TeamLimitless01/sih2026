@@ -23,7 +23,7 @@ export function SonarGrid({ className }: { className?: string }) {
     let animationFrameId: number
     let rings: Ring[] = []
     const spacing = 40 // Grid spacing
-    const dotRadius = 1.5
+    const dotRadius = 5
 
     // Resize handler
     const handleResize = () => {
@@ -40,7 +40,7 @@ export function SonarGrid({ className }: { className?: string }) {
         y: Math.random() * canvas.height,
         radius: 0,
         maxRadius: 300 + Math.random() * 200,
-        speed: 1.5 + Math.random(),
+        speed: 1 + Math.random(),
         color: `rgba(59, 130, 246, 1)` // Blue-ish
       })
     }, 3000)

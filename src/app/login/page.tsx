@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -49,12 +50,12 @@ export default function LoginPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-zinc-950/80 to-transparent"></div>
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_10%,transparent_100%)]"></div>
 
-        <div className="relative z-10 flex items-center gap-3">
-          <div className="p-2.5 bg-blue-500/10 border border-blue-500/20 rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+        <Link href="/" className="relative z-10 flex items-center gap-3 w-fit cursor-pointer group">
+          <div className="p-2.5 bg-blue-500/10 border border-blue-500/20 rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.5)] group-hover:bg-blue-500/20 transition-colors">
             <ScanFace className="w-7 h-7 text-blue-400" />
           </div>
-          <span className="text-2xl font-bold text-white tracking-tight font-sans">Drishti.AI</span>
-        </div>
+          <span className="text-2xl font-bold text-white tracking-tight font-sans group-hover:text-blue-400 transition-colors">Drishti.AI</span>
+        </Link>
 
         <div className="relative z-10 max-w-xl">
           {/* <Badge className="bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 border-blue-500/20 mb-6 py-1.5 px-3 uppercase tracking-widest text-[10px]">
@@ -85,12 +86,12 @@ export default function LoginPage() {
         <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none mix-blend-screen"></div>
 
         <div className="w-full max-w-sm relative z-10">
-          <div className="lg:hidden flex items-center gap-3 mb-12 justify-center">
-            <div className="p-2 bg-blue-500/10 border border-blue-500/20 rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+          <Link href="/" className="lg:hidden flex items-center gap-3 mb-12 justify-center cursor-pointer group">
+            <div className="p-2 bg-blue-500/10 border border-blue-500/20 rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.5)] group-hover:bg-blue-500/20 transition-colors">
               <ScanFace className="w-6 h-6 text-blue-400" />
             </div>
-            <span className="text-2xl font-bold text-white tracking-tight">Drishti.AI</span>
-          </div>
+            <span className="text-2xl font-bold text-white tracking-tight group-hover:text-blue-400 transition-colors">Drishti.AI</span>
+          </Link>
 
           <div className="text-center lg:text-left mb-8">
             <h2 className="text-3xl font-bold text-white tracking-tight mb-2">Welcome Back</h2>
