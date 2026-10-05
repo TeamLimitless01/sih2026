@@ -1,65 +1,68 @@
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { SonarGrid } from "@/components/ui/sonar-grid";
 import { Slogan } from "@/components/ui/slogan";
 import {
   Shield,
   ChevronRight,
   FileText,
   Network,
-  Clock,
-  Upload,
   Search,
-  Link as LinkIcon,
-  MousePointerClick,
-  Sparkles,
-  FileBarChart,
-  Database,
-  Share2,
-  AlertTriangle,
-  Fingerprint,
-  CheckCircle2,
   Brain,
-  Lock,
-  Eye,
-  UserCheck
+  Globe,
+  ArrowRight,
+  ScanFace,
+  MessageSquare,
+  Sparkles,
+  Zap,
+  BarChart3,
+  Server,
+  Link2,
+  Database,
+  Smartphone,
+  Bitcoin,
+  Layers,
+  TrendingUp,
+  Users,
+  ShieldAlert,
+  ShieldCheck,
+  Key,
+  Activity
 } from "lucide-react";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-zinc-50 font-sans selection:bg-blue-500/30 overflow-x-hidden">
+    <div className="min-h-screen bg-black text-zinc-50 font-sans selection:bg-blue-500/30 overflow-x-hidden">
       {/* Navigation */}
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50 rounded-full border border-white/10 bg-black/40 backdrop-blur-2xl shadow-2xl">
-        <div className="px-6 h-14 flex items-center justify-between">
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl z-50 rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl shadow-2xl transition-all">
+        <div className="px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="bg-blue-600/20 p-1.5 rounded-full border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-              <Eye className="w-4 h-4 text-blue-400" />
+            <div className="p-2 bg-blue-500/10 border border-blue-500/20 rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.3)] flex items-center justify-center">
+              <ScanFace className="w-5 h-5 text-blue-400" />
             </div>
-            <span className="font-bold tracking-widest text-sm uppercase bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">Drishti.AI</span>
+            <span className="font-bold tracking-tight text-lg text-white">Drishti.AI</span>
           </div>
-          <div className="hidden md:flex items-center gap-6 text-[13px] font-semibold text-zinc-400 uppercase tracking-wider">
-            <Link href="#problem" className="hover:text-white transition-colors">Problem</Link>
-            <Link href="#solution" className="hover:text-white transition-colors">Solution</Link>
-            <Link href="#capabilities" className="hover:text-white transition-colors">Capabilities</Link>
-            <Link href="#security" className="hover:text-white transition-colors">Security</Link>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+            <Link href="#capabilities" className="hover:text-white transition-colors">AI Capabilities</Link>
+            <Link href="#ecosystem" className="hover:text-white transition-colors">Ecosystem</Link>
+            <Link href="#use-cases" className="hover:text-white transition-colors">Use Cases</Link>
           </div>
           <div className="flex items-center gap-4">
             {session ? (
               <Link
                 href="/cases"
-                className="text-xs font-bold uppercase tracking-wider text-white hover:text-blue-400 transition-colors"
+                className="text-sm font-semibold text-white hover:text-blue-400 transition-colors flex items-center gap-2"
               >
-                Go to Workspace
+                Go to Workspace <ArrowRight className="w-4 h-4" />
               </Link>
             ) : (
               <Link
                 href="/login"
-                className="text-xs font-bold uppercase tracking-wider bg-white/10 border border-white/20 text-white px-5 py-2 rounded-full hover:bg-white hover:text-black transition-all"
+                className="text-sm font-semibold bg-white text-black px-5 py-2.5 rounded-xl hover:bg-zinc-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]"
               >
-                Investigator Login
+                Agent Login
               </Link>
             )}
           </div>
@@ -67,211 +70,168 @@ export default async function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden border-b border-white/5">
-        <SonarGrid className="absolute inset-0 z-0 opacity-70" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#09090b]/80 to-[#09090b] z-0" />
+      <section className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden">
+        {/* Animated Perspective Grid */}
+        <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden [perspective:800px]">
+          <div className="absolute w-[200%] h-[200%] bg-[linear-gradient(rgba(59,130,246,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.3)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_20%,#000_60%,transparent_100%)] animate-grid-scroll origin-[50%_0%] top-0 left-[-50%] border-t border-blue-500/40" style={{ transform: 'rotateX(60deg) translateY(-100px)' }}></div>
+          <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] mix-blend-screen pointer-events-none"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] mix-blend-screen pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black z-0 pointer-events-none" />
+        </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center mt-10">
-          {/* <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-mono mb-8 uppercase tracking-wider backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5" />
-            AI-Powered Cyber Fraud Investigation Platform
-          </div> */}
-          <Slogan />
-          <p className="text-lg md:text-xl text-zinc-400 max-w-3xl mx-auto mb-4 leading-relaxed">
-            A unified platform for analyzing fragmented cyber-fraud evidence, discovering hidden relationships, and helping investigators identify actionable leads faster.
+          {/* <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-400 text-xs font-mono mb-8 uppercase tracking-widest backdrop-blur-md shadow-[0_0_20px_rgba(59,130,246,0.1)]">
+            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
+            AI-Native Cyber Intelligence
+          </div>
+           */}
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-[1.1]">
+            <Slogan />
+          </h1>
+
+          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+            The intelligent operating system for cyber fraud analysis. Let our AI automatically ingest, correlate, and analyze your CDRs, IPs, and financial records to uncover hidden syndicates instantly.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href={session ? "/cases" : "/login"}
-              className="group relative inline-flex items-center justify-center px-8 py-4 font-medium text-white bg-blue-600 rounded-full overflow-hidden transition-all hover:scale-105 hover:bg-blue-500 w-full sm:w-auto"
+              className="group relative inline-flex items-center justify-center px-8 py-4 font-medium text-white bg-blue-600 rounded-xl overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(37,99,235,0.4)] w-full sm:w-auto"
             >
               <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
               <span className="relative flex items-center gap-2">
-                Get Started
+                Launch AI Workspace
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>
-            <Link
-              href="#solution"
-              className="inline-flex items-center justify-center px-8 py-4 font-medium text-white bg-white/5 border border-white/10 rounded-full transition-all hover:bg-white/10 w-full sm:w-auto"
-            >
-              Explore the Platform
-            </Link>
-          </div>
-
-          <div className="pt-8 border-t border-white/10">
-            <p className="text-sm font-mono text-zinc-500 tracking-widest uppercase">
-              CDR • IPDR • UPI • Bank Data • Email • Digital Artifacts
-            </p>
           </div>
         </div>
       </section>
 
-      {/* Problem Section */}
-      <section id="problem" className="py-24 md:py-32 relative bg-[#09090b]">
+      {/* Bento Grid AI Capabilities */}
+      <section id="capabilities" className="py-24 relative z-10">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Cyber Fraud Evidence Is Fragmented.<br />Investigations Shouldn't Be.</h2>
-            <p className="text-lg text-zinc-400 leading-relaxed">
-              Investigators often work with evidence scattered across multiple files and data sources. Connecting phone numbers, devices, IP addresses, UPI IDs, bank accounts, and transactions manually takes valuable time.
-            </p>
+            <div className="inline-flex items-center justify-center p-3 bg-zinc-900 border border-zinc-800 rounded-2xl mb-6 shadow-inner">
+              <Brain className="w-8 h-8 text-purple-400" />
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">An AI brain for your investigations.</h2>
+            <p className="text-lg text-zinc-400">Drishti.AI doesn't just store data; it understands it. From automated parsing to narrative generation, every feature is infused with artificial intelligence.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-8 rounded-3xl bg-zinc-900/50 border border-white/5">
-              <div className="w-12 h-12 bg-rose-500/10 text-rose-400 rounded-2xl flex items-center justify-center mb-6">
-                <FileText className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Fragmented Evidence</h3>
-              <p className="text-zinc-400 leading-relaxed">Critical information is distributed across CDR, IPDR, transaction records, emails, and other digital artifacts.</p>
-            </div>
-            <div className="p-8 rounded-3xl bg-zinc-900/50 border border-white/5">
-              <div className="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-2xl flex items-center justify-center mb-6">
-                <Eye className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Hidden Connections</h3>
-              <p className="text-zinc-400 leading-relaxed">Important relationships between devices, accounts, numbers, and transactions can remain buried inside large datasets.</p>
-            </div>
-            <div className="p-8 rounded-3xl bg-zinc-900/50 border border-white/5">
-              <div className="w-12 h-12 bg-orange-500/10 text-orange-400 rounded-2xl flex items-center justify-center mb-6">
-                <Clock className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Time-Consuming Analysis</h3>
-              <p className="text-zinc-400 leading-relaxed">Manual correlation makes it difficult to quickly identify suspicious patterns and cross-case connections.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Solution Section */}
-      <section id="solution" className="py-24 md:py-32 relative bg-zinc-900/30 border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">One Platform. Every Connection.</h2>
-            <p className="text-lg text-zinc-400 leading-relaxed">
-              Drishti.AI brings digital evidence into a unified investigation environment. Upload evidence, extract meaningful entities, automatically correlate relationships, visualize investigation networks, and use AI to turn complex evidence into understandable investigative insights.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            <WorkflowStep num="01" title="Upload" icon={<Upload />} desc="Import CDR, IPDR, UPI & Bank data." />
-            <WorkflowStep num="02" title="Extract" icon={<Search />} desc="Identify IPs, IMEIs, & UPI IDs." />
-            <WorkflowStep num="03" title="Correlate" icon={<LinkIcon />} desc="Connect entities across sources." />
-            <WorkflowStep num="04" title="Investigate" icon={<MousePointerClick />} desc="Explore interactive graphs." />
-            <WorkflowStep num="05" title="Analyze" icon={<Brain />} desc="AI highlights potential leads." />
-            <WorkflowStep num="06" title="Report" icon={<FileBarChart />} desc="Generate structured reports." />
-          </div>
-        </div>
-      </section>
-
-      {/* Core Capabilities */}
-      <section id="capabilities" className="py-24 md:py-32 relative bg-[#09090b]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Built for Faster Cyber-Fraud Investigation</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="p-8 md:p-10 rounded-3xl bg-zinc-900/40 border border-white/5 hover:border-blue-500/30 transition-colors group">
-              <Database className="w-10 h-10 text-blue-400 mb-6" />
-              <h3 className="text-2xl font-bold mb-4 text-white">Evidence Intelligence</h3>
-              <p className="text-zinc-400 mb-6">Bring multiple evidence formats into a single investigation workspace.</p>
-              <div className="flex flex-wrap gap-2">
-                {['CDR', 'IPDR', 'UPI', 'Bank Transactions', 'Email', 'Logs'].map(tag => (
-                  <span key={tag} className="px-3 py-1 bg-white/5 text-zinc-300 text-xs rounded-full border border-white/10">{tag}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="p-8 md:p-10 rounded-3xl bg-zinc-900/40 border border-white/5 hover:border-indigo-500/30 transition-colors group">
-              <Network className="w-10 h-10 text-indigo-400 mb-6" />
-              <h3 className="text-2xl font-bold mb-4 text-white">Entity Correlation</h3>
-              <p className="text-zinc-400 mb-6">Automatically connect related identifiers and devices across investigations.</p>
-              <div className="flex flex-wrap gap-2">
-                {['Phone Numbers', 'IMEI / IMSI', 'UPI IDs', 'Bank Accounts', 'IP Addresses', 'Emails', 'Devices', 'Transactions'].map(tag => (
-                  <span key={tag} className="px-3 py-1 bg-indigo-500/10 text-indigo-300 text-xs rounded-full border border-indigo-500/20">{tag}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="p-8 md:p-10 rounded-3xl bg-zinc-900/40 border border-white/5 hover:border-emerald-500/30 transition-colors group">
-              <Share2 className="w-10 h-10 text-emerald-400 mb-6" />
-              <h3 className="text-2xl font-bold mb-4 text-white">Investigation Graph</h3>
-              <p className="text-zinc-400 mb-6">Visualize complex relationships between entities and discover connections that are difficult to see in raw datasets.</p>
-              <p className="font-mono text-sm text-emerald-400/80">Explore → Filter → Trace → Investigate</p>
-            </div>
-
-            <div className="p-8 md:p-10 rounded-3xl bg-zinc-900/40 border border-white/5 hover:border-purple-500/30 transition-colors group">
-              <AlertTriangle className="w-10 h-10 text-purple-400 mb-6" />
-              <h3 className="text-2xl font-bold mb-4 text-white">Cross-Case Intelligence</h3>
-              <p className="text-zinc-400 mb-6">Discover when the same phone number, UPI ID, IP address, device, or other artifact appears across multiple cases.</p>
-              <p className="text-purple-300 font-medium text-sm">One artifact can reveal a wider network.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Investigation Graph Showcase & AI */}
-      <section className="py-24 md:py-32 relative bg-zinc-900/30 border-y border-white/5 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.1),rgba(255,255,255,0))]" />
-
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">See the Network Behind the Fraud</h2>
-            <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
-              Raw records can hide relationships. Our investigation graph connects entities across multiple evidence sources to reveal the bigger picture.
-            </p>
-
-            <div className="bg-black/50 border border-white/10 rounded-2xl p-6 mb-8 font-mono text-sm text-zinc-300 flex flex-wrap gap-2 items-center">
-              <span className="text-blue-400">Person</span> <ChevronRight className="w-3 h-3 text-zinc-600" />
-              <span className="text-indigo-400">Phone</span> <ChevronRight className="w-3 h-3 text-zinc-600" />
-              <span className="text-purple-400">IMEI</span> <ChevronRight className="w-3 h-3 text-zinc-600" />
-              <span className="text-pink-400">IP</span> <ChevronRight className="w-3 h-3 text-zinc-600" />
-              <span className="text-rose-400">UPI</span> <ChevronRight className="w-3 h-3 text-zinc-600" />
-              <span className="text-orange-400">Bank Account</span> <ChevronRight className="w-3 h-3 text-zinc-600" />
-              <span className="text-amber-400">Transaction</span> <ChevronRight className="w-3 h-3 text-zinc-600" />
-              <span className="text-emerald-400">Other Case</span>
-            </div>
-
-            <p className="text-sm text-zinc-500">
-              Click any entity to explore its relationships, evidence sources, associated cases, and suspicious indicators.
-            </p>
-          </div>
-
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-500 opacity-20 blur-2xl rounded-[3rem]" />
-            <div className="relative bg-zinc-950 border border-white/10 rounded-3xl p-8 shadow-2xl">
-              <div className="flex items-center gap-3 mb-6 border-b border-white/10 pb-6">
-                <Brain className="w-8 h-8 text-blue-400" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Big Feature 1: Evidence Interrogation */}
+            <div className="md:col-span-2 relative group overflow-hidden rounded-3xl bg-zinc-900/50 border border-white/5 p-8 hover:border-blue-500/30 transition-colors">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative z-10 h-full flex flex-col justify-between">
                 <div>
-                  <h3 className="text-xl font-bold">From Data to Investigative Leads</h3>
-                  <p className="text-sm text-zinc-400">AI works alongside deterministic correlation.</p>
+                  <div className="w-12 h-12 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center mb-6 shadow-inner">
+                    <MessageSquare className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 tracking-tight">Conversational Evidence Interrogation</h3>
+                  <p className="text-zinc-400 max-w-md">Stop running complex SQL queries. Just ask the AI: <span className="italic text-zinc-300">"Which IPs were shared by Suspect A and Suspect B between August 1st and August 5th?"</span> and get immediate, verifiable answers.</p>
                 </div>
-              </div>
-
-              <div className="space-y-4">
-                <div className="bg-white/5 p-4 rounded-xl">
-                  <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Detected Pattern</p>
-                  <p className="font-medium text-rose-300">Same IMEI associated with multiple phone numbers.</p>
-                </div>
-
-                <div className="bg-white/5 p-4 rounded-xl">
-                  <p className="text-xs text-zinc-500 uppercase tracking-wider mb-1">Related Evidence</p>
-                  <div className="flex gap-2">
-                    <span className="text-sm font-mono bg-black/50 px-2 py-1 rounded text-zinc-300">CDR_2026_09.csv</span>
-                    <span className="text-sm font-mono bg-black/50 px-2 py-1 rounded text-zinc-300">CDR_2026_10.csv</span>
+                <div className="mt-8 flex flex-col gap-3">
+                  <div className="bg-blue-500/10 text-blue-300 border border-blue-500/20 rounded-2xl rounded-tr-sm p-4 w-fit self-end text-sm max-w-[80%]">
+                    Did any suspects wire money to accounts in Dubai?
+                  </div>
+                  <div className="bg-zinc-800/50 border border-zinc-700 rounded-2xl rounded-tl-sm p-4 w-fit text-sm max-w-[80%] flex gap-3">
+                    <Brain className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
+                    <p className="text-zinc-300">Yes, <span className="font-semibold text-white">Target #4 (+91 98765 43210)</span> initiated 3 wire transfers to UAE-based accounts totaling $45,000 on Oct 12th. <span className="text-blue-400 hover:underline cursor-pointer">View Txn Logs</span></p>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-xl">
-                  <p className="text-xs text-blue-400/80 uppercase tracking-wider mb-1">AI Insight</p>
-                  <p className="text-sm text-blue-100 leading-relaxed">The device identifier appears across multiple phone numbers. This may indicate device sharing, SIM replacement, or another relationship requiring investigator verification.</p>
+            {/* Feature 2: Smart Parsers */}
+            <div className="relative group overflow-hidden rounded-3xl bg-zinc-900/50 border border-white/5 p-8 hover:border-emerald-500/30 transition-colors">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative z-10 h-full flex flex-col justify-between">
+                <div>
+                  <div className="w-12 h-12 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mb-6 shadow-inner">
+                    <Zap className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 tracking-tight">Automated Parsing</h3>
+                  <p className="text-zinc-400">Upload messy, unstructured PDF bank statements or massive CSV CDR logs. Our AI instantly normalizes and extracts entities without manual mapping.</p>
                 </div>
+                <div className="mt-8">
+                  <div className="flex items-center justify-between border-b border-white/5 pb-2 mb-2 text-sm text-zinc-500 font-mono">
+                    <span>RAW PDF</span> <ArrowRight className="w-3 h-3 text-emerald-400" /> <span>STRUCTURED DATA</span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                <div className="bg-emerald-500/10 border border-emerald-500/20 p-4 rounded-xl">
-                  <p className="text-xs text-emerald-400/80 uppercase tracking-wider mb-1">Recommended Lead</p>
-                  <p className="text-sm text-emerald-100">Review the associated numbers and their activity timeline.</p>
+            {/* Feature 3: Global OSINT Search */}
+            <div className="relative group overflow-hidden rounded-3xl bg-zinc-900/50 border border-white/5 p-8 hover:border-amber-500/30 transition-colors">
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative z-10 h-full flex flex-col justify-between">
+                <div>
+                  <div className="w-12 h-12 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center mb-6 shadow-inner">
+                    <Globe className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 tracking-tight">AI OSINT Search</h3>
+                  <p className="text-zinc-400">Search a suspect's phone number or email globally. The AI scrapes the open web and leaks, summarizing its findings instantly.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Feature 4: Visual Graph */}
+            <div className="md:col-span-2 relative group overflow-hidden rounded-3xl bg-zinc-900/50 border border-white/5 p-8 hover:border-indigo-500/30 transition-colors">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative z-10 h-full flex flex-col justify-between">
+                <div>
+                  <div className="w-12 h-12 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 rounded-xl flex items-center justify-center mb-6 shadow-inner">
+                    <Network className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 tracking-tight">Predictive Correlation Graph</h3>
+                  <p className="text-zinc-400 max-w-md">Drishti.AI maps connections between entities automatically. But more importantly, the AI highlights <span className="text-white font-medium">implicit relationships</span>—predicting shared aliases, devices, or syndicates based on behavioral overlaps.</p>
+                </div>
+                <div className="mt-8 h-48 rounded-xl border border-white/10 bg-black/50 overflow-hidden relative">
+                  <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full">
+                    <svg className="absolute inset-0 w-full h-full">
+                      <path d="M 150 100 Q 250 50 350 100" fill="none" stroke="rgba(99, 102, 241, 0.5)" strokeWidth="2" strokeDasharray="5,5" className="animate-pulse" />
+                    </svg>
+                    <div className="absolute top-20 left-32 w-12 h-12 rounded-full bg-blue-600/20 border border-blue-500 flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.4)]">
+                      <Shield className="w-5 h-5 text-blue-400" />
+                    </div>
+                    <div className="absolute top-20 right-32 w-12 h-12 rounded-full bg-indigo-600/20 border border-indigo-500 flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.4)]">
+                      <ScanFace className="w-5 h-5 text-indigo-400" />
+                    </div>
+                    <div className="absolute top-10 left-1/2 -translate-x-1/2 bg-indigo-500/20 text-indigo-300 text-[10px] px-2 py-1 rounded-full border border-indigo-500/30">
+                      AI: High Probability Match
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Feature 5: AI Reports */}
+            <div className="md:col-span-3 relative group overflow-hidden rounded-3xl bg-zinc-900/50 border border-white/5 p-8 hover:border-rose-500/30 transition-colors">
+              <div className="absolute inset-0 bg-gradient-to-r from-rose-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
+                <div className="flex-1">
+                  <div className="w-12 h-12 bg-rose-500/10 border border-rose-500/20 text-rose-400 rounded-xl flex items-center justify-center mb-6 shadow-inner">
+                    <BarChart3 className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 tracking-tight">AI-Generated Legal Reports</h3>
+                  <p className="text-zinc-400 max-w-2xl">
+                    Drafting court-ready reports takes days. Drishti.AI generates comprehensive, chronological narratives of a case at the click of a button. The LLM weaves the evidence together into a factual, unbiased summary ready for export.
+                  </p>
+                </div>
+                <div className="w-full md:w-72 flex-shrink-0 bg-black/50 border border-white/10 rounded-xl p-4">
+                  <div className="flex gap-2 mb-3">
+                    <div className="w-3 h-3 rounded-full bg-rose-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="h-2 w-3/4 bg-zinc-800 rounded"></div>
+                    <div className="h-2 w-full bg-zinc-800 rounded"></div>
+                    <div className="h-2 w-5/6 bg-zinc-800 rounded"></div>
+                    <div className="h-2 w-1/2 bg-blue-500/40 rounded mt-4"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -279,124 +239,120 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Security & Trust Section */}
-      <section id="security" className="py-24 md:py-32 relative bg-[#09090b]">
-        <div className="max-w-4xl mx-auto px-6 text-center mb-16">
-          <Fingerprint className="w-16 h-16 text-zinc-700 mx-auto mb-6" />
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Designed for Evidence-Driven Investigation</h2>
-          <p className="text-lg text-zinc-400">Strictly built for authorized personnel, ensuring high-security data processing.</p>
-        </div>
+      {/* Ecosystem Section */}
+      <section id="ecosystem" className="py-24 relative border-t border-white/5 bg-zinc-950">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center justify-center p-3 bg-zinc-900 border border-zinc-800 rounded-2xl mb-6 shadow-inner">
+              <Layers className="w-8 h-8 text-emerald-400" />
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">A Unified Intelligence Ecosystem.</h2>
+            <p className="text-lg text-zinc-400">Drishti.AI seamlessly ingests and normalizes data from disparate sources, allowing you to cross-reference telecom records with banking and dark web artifacts in one unified canvas.</p>
+          </div>
 
-        <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-6">
-          <div className="flex gap-4 p-6 bg-zinc-900/30 rounded-2xl border border-white/5">
-            <Lock className="w-8 h-8 text-blue-400 shrink-0" />
-            <div>
-              <h4 className="font-bold text-lg mb-2">Role-Based Access</h4>
-              <p className="text-zinc-400 text-sm leading-relaxed">Investigators, analysts, and administrators receive access based on their responsibilities.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-black border border-white/5 rounded-2xl p-6 text-center hover:bg-zinc-900 transition-colors">
+              <Smartphone className="w-10 h-10 text-blue-400 mx-auto mb-4" />
+              <h4 className="text-lg font-semibold text-white mb-2">Telecom & ISPs</h4>
+              <p className="text-sm text-zinc-500">Automated CDR & IPDR parsing. Geolocation tracking.</p>
+            </div>
+
+            <div className="bg-black border border-white/5 rounded-2xl p-6 text-center hover:bg-zinc-900 transition-colors">
+              <Database className="w-10 h-10 text-emerald-400 mx-auto mb-4" />
+              <h4 className="text-lg font-semibold text-white mb-2">Financial Institutions</h4>
+              <p className="text-sm text-zinc-500">Bank statements, UPI txn logs, and wire transfers.</p>
+            </div>
+
+            <div className="bg-black border border-white/5 rounded-2xl p-6 text-center hover:bg-zinc-900 transition-colors">
+              <Bitcoin className="w-10 h-10 text-amber-400 mx-auto mb-4" />
+              <h4 className="text-lg font-semibold text-white mb-2">Crypto Exchanges</h4>
+              <p className="text-sm text-zinc-500">Wallet clustering and illicit transaction tracing.</p>
+            </div>
+
+            <div className="bg-black border border-white/5 rounded-2xl p-6 text-center hover:bg-zinc-900 transition-colors">
+              <Globe className="w-10 h-10 text-rose-400 mx-auto mb-4" />
+              <h4 className="text-lg font-semibold text-white mb-2">Open & Dark Web</h4>
+              <p className="text-sm text-zinc-500">Social media footprints, leaked DBs, and forums.</p>
             </div>
           </div>
-          <div className="flex gap-4 p-6 bg-zinc-900/30 rounded-2xl border border-white/5">
-            <Database className="w-8 h-8 text-indigo-400 shrink-0" />
-            <div>
-              <h4 className="font-bold text-lg mb-2">Evidence Traceability</h4>
-              <p className="text-zinc-400 text-sm leading-relaxed">Investigation findings can be traced back to their underlying evidence sources.</p>
+
+          {/* <div className="mt-12 flex justify-center">
+            <div className="inline-flex items-center gap-4 bg-zinc-900 border border-zinc-800 rounded-full px-6 py-3">
+              <Link2 className="w-5 h-5 text-zinc-400" />
+              <span className="text-zinc-300 text-sm font-medium">Native API Integrations available for enterprise deployments.</span>
             </div>
+          </div> */}
+        </div>
+      </section>
+
+      {/* Use Cases Section */}
+      <section id="use-cases" className="py-24 relative border-t border-white/5 bg-black">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Built for complex investigations.</h2>
+            <p className="text-lg text-zinc-400">Drishti.AI is battle-tested against modern, multi-layered cybercrimes. Accelerate the resolution of high-profile cases.</p>
           </div>
-          <div className="flex gap-4 p-6 bg-zinc-900/30 rounded-2xl border border-white/5">
-            <CheckCircle2 className="w-8 h-8 text-emerald-400 shrink-0" />
-            <div>
-              <h4 className="font-bold text-lg mb-2">Explainable Findings</h4>
-              <p className="text-zinc-400 text-sm leading-relaxed">Suspicious patterns are supported by identifiable relationships and clear logic rules.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Case 1 */}
+            <div className="bg-zinc-900/40 border border-white/5 rounded-3xl p-8 hover:bg-zinc-900/80 transition-colors">
+              <TrendingUp className="w-8 h-8 text-rose-400 mb-6" />
+              <h3 className="text-xl font-bold text-white mb-3 tracking-tight">Investment & "Pig Butchering" Scams</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Track illicit fund flows from victim bank accounts into crypto exchanges. Drishti.AI automatically correlates wire transfers with known malicious crypto wallets, while OSINT tools uncover the real identities behind spoofed trading platforms.
+              </p>
             </div>
-          </div>
-          <div className="flex gap-4 p-6 bg-zinc-900/30 rounded-2xl border border-white/5">
-            <UserCheck className="w-8 h-8 text-purple-400 shrink-0" />
-            <div>
-              <h4 className="font-bold text-lg mb-2">Human-in-the-Loop AI</h4>
-              <p className="text-zinc-400 text-sm leading-relaxed">AI assists investigators. It does not replace investigator judgment or make final conclusions.</p>
+
+            {/* Case 2 */}
+            <div className="bg-zinc-900/40 border border-white/5 rounded-3xl p-8 hover:bg-zinc-900/80 transition-colors">
+              <Users className="w-8 h-8 text-blue-400 mb-6" />
+              <h3 className="text-xl font-bold text-white mb-3 tracking-tight">Money Mule Networks</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Identify "mule" accounts by analyzing high-velocity transaction bursts across hundreds of parsed bank statements. The AI graph instantly flags when multiple seemingly unrelated accounts share the same login IP address or device MAC address.
+              </p>
+            </div>
+
+            {/* Case 3 */}
+            <div className="bg-zinc-900/40 border border-white/5 rounded-3xl p-8 hover:bg-zinc-900/80 transition-colors">
+              <ShieldAlert className="w-8 h-8 text-amber-400 mb-6" />
+              <h3 className="text-xl font-bold text-white mb-3 tracking-tight">Dark Web Trafficking</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Connect the dots between seized vendor devices, PGP keys, and cryptocurrency transactions. Our OSINT parser scans dark web marketplaces to map a target's online aliases directly to their physical telecom footprints (CDRs).
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 relative bg-blue-950/20 border-t border-blue-900/30 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.15),transparent)] pointer-events-none" />
-        <div className="max-w-3xl mx-auto px-6 relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Turn Fragmented Evidence Into Connected Intelligence.</h2>
-          <p className="text-xl text-blue-200/80 mb-10">
-            Investigate faster. Discover hidden relationships. Build stronger evidence-backed leads.
-          </p>
+      <section className="py-24 relative border-t border-white/5 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/10 to-transparent"></div>
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <Brain className="w-16 h-16 text-blue-500 mx-auto mb-6 opacity-80" />
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Stop drowning in data. Start investigating.</h2>
+          <p className="text-xl text-zinc-400 mb-10">Experience the only cyber-fraud investigation platform built from the ground up for the AI era.</p>
           <Link
             href={session ? "/cases" : "/login"}
-            className="inline-flex items-center justify-center px-8 py-4 font-bold text-black bg-white rounded-full hover:bg-zinc-200 hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)]"
+            className="inline-flex items-center justify-center px-10 py-5 font-bold text-black bg-white rounded-2xl transition-all hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.3)] text-lg"
           >
-            Enter Investigation Workspace
+            Enter the AI Workspace
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-black py-16 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-12 mb-16">
-            <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center gap-2 mb-4">
-                <Eye className="w-5 h-5 text-blue-500" />
-                <span className="font-bold tracking-widest text-sm uppercase">Drishti.AI</span>
-              </div>
-              <p className="text-zinc-500 text-sm leading-relaxed max-w-sm mb-6">
-                AI-Powered Unified Cyber Fraud Analysis & Digital Artifact Correlator.
-              </p>
-              <p className="text-zinc-600 text-xs leading-relaxed max-w-md border border-white/5 p-4 rounded-xl bg-white/[0.02]">
-                <strong>Disclaimer:</strong> Designed as a prototype for cyber-fraud investigation and digital artifact correlation. AI-generated insights are investigative assistance and require human verification.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-white mb-6">Product</h4>
-              <ul className="space-y-4 text-sm text-zinc-500">
-                <li><Link href="#" className="hover:text-white transition-colors">How It Works</Link></li>
-                <li><Link href="#capabilities" className="hover:text-white transition-colors">Capabilities</Link></li>
-                <li><Link href="#" className="hover:text-white transition-colors">Investigation Graph</Link></li>
-                <li><Link href="#" className="hover:text-white transition-colors">AI Analysis</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold text-white mb-6">Platform</h4>
-              <ul className="space-y-4 text-sm text-zinc-500">
-                <li><Link href="/login" className="hover:text-white transition-colors">Investigator Login</Link></li>
-                <li><Link href="/login" className="hover:text-white transition-colors">Analyst Access</Link></li>
-                <li><Link href="/reports" className="hover:text-white transition-colors">Reports</Link></li>
-              </ul>
-            </div>
+      <footer className="py-8 border-t border-white/10 bg-black text-center text-zinc-500 text-sm">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-2">
+            <ScanFace className="w-4 h-4" /> Drishti.AI
           </div>
-
-          <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-zinc-600 text-xs font-mono uppercase tracking-widest">
-              &copy; 2026 Smart India Hackathon. All rights reserved.
-            </p>
-            <div className="flex items-center gap-2 text-zinc-600 text-xs font-mono uppercase tracking-widest">
-              <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              SIH 2026 Prototype
-            </div>
+          <p>© {new Date().getFullYear()} Drishti.AI. AI-Native Cyber Intelligence.</p>
+          <div className="flex gap-4 font-mono text-xs uppercase tracking-widest">
+            <span className="hover:text-white cursor-pointer transition-colors">Platform</span>
+            <span className="hover:text-white cursor-pointer transition-colors">Capabilities</span>
           </div>
         </div>
       </footer>
     </div>
   );
-}
-
-function WorkflowStep({ num, title, icon, desc }: { num: string, title: string, icon: React.ReactNode, desc: string }) {
-  return (
-    <div className="p-6 rounded-2xl bg-black/50 border border-white/5 relative group hover:bg-zinc-900 transition-colors">
-      <div className="absolute top-4 right-4 text-xs font-mono text-zinc-700 group-hover:text-zinc-500 transition-colors">{num}</div>
-      <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center mb-4 text-zinc-400 group-hover:text-blue-400 group-hover:bg-blue-500/10 transition-colors">
-        {icon}
-      </div>
-      <h4 className="font-bold text-white mb-2">{title}</h4>
-      <p className="text-xs text-zinc-500 leading-relaxed">{desc}</p>
-    </div>
-  )
 }
