@@ -16,7 +16,7 @@ function GlobalSearchContent() {
   const [query, setQuery] = useState(searchParams?.get("q") || "");
   const [debouncedQuery, setDebouncedQuery] = useState(searchParams?.get("q") || "");
   const [isSearching, setIsSearching] = useState(false);
-  const [results, setResults] = useState<{cases: any[], entities: any[]}>({ cases: [], entities: [] });
+  const [results, setResults] = useState<{ cases: any[], entities: any[] }>({ cases: [], entities: [] });
 
   // Update query when URL changes
   useEffect(() => {
@@ -54,7 +54,7 @@ function GlobalSearchContent() {
 
   return (
     <div className="max-w-4xl mx-auto w-full space-y-8 pb-12 pt-8">
-      
+
       <div className="text-center space-y-4">
         <div className="inline-flex items-center justify-center p-4 bg-blue-500/10 rounded-full mb-2">
           <Search className="w-8 h-8 text-blue-500" />
@@ -138,7 +138,7 @@ function GlobalSearchContent() {
                         <span className="font-mono text-lg text-amber-400 font-bold tracking-tight">{e.value}</span>
                       </div>
                     </div>
-                    
+
                     <div className="bg-zinc-950/50 p-3 rounded-lg border border-zinc-800/50">
                       <span className="text-xs text-zinc-500 uppercase tracking-wider font-semibold mb-2 block">Found in Cases</span>
                       <div className="flex flex-wrap gap-2">
