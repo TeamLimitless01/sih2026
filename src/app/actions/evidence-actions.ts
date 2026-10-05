@@ -22,10 +22,10 @@ export async function processUploadedEvidence(caseId: string, fileData: any) {
 
   const fileName = fileData.original_filename || "unknown_file";
   const fileUrl = fileData.secure_url;
-  
+
   const rawFormat = (fileData.format || "unknown").toLowerCase();
-  const fileType = ["jpg", "jpeg", "png", "webp", "gif"].includes(rawFormat) 
-    ? `image/${rawFormat}` 
+  const fileType = ["jpg", "jpeg", "png", "webp", "gif"].includes(rawFormat)
+    ? `image/${rawFormat}`
     : rawFormat;
 
   try {
