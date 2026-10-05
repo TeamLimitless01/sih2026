@@ -8,11 +8,23 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { performGlobalSearch } from "@/app/actions/search-actions";
 
-export default function GlobalSearchPage() {
-  const [query, setQuery] = useState("");
-  const [debouncedQuery, setDebouncedQuery] = useState("");
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+
+function GlobalSearchContent() {
+  const searchParams = useSearchParams();
+  const [query, setQuery] = useState(searchParams?.get("q") || "");
+  const [debouncedQuery, setDebouncedQuery] = useState(searchParams?.get("q") || "");
   const [isSearching, setIsSearching] = useState(false);
   const [results, setResults] = useState<{cases: any[], entities: any[]}>({ cases: [], entities: [] });
+
+  // Update query when URL changes
+  useEffect(() => {
+    const q = searchParams?.get("q");
+    if (q) {
+      setQuery(q);
+    }
+  }, [searchParams]);
 
   // Debounce logic
   useEffect(() => {
@@ -114,7 +126,7 @@ export default function GlobalSearchPage() {
             Matching Entities ({results.entities.length})
           </h2>
           <div className="grid gap-3">
-            {results.entities.map(e => (
+            {results.entities.map((e: any) => (
               <div key={e.id}>
                 <Card className="bg-zinc-900/50 border-zinc-800 relative overflow-hidden">
                   <CardContent className="p-4">
@@ -147,5 +159,17 @@ export default function GlobalSearchPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function GlobalSearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center w-full min-h-[50vh]">
+        <Loader2 className="w-8 h-8 text-blue-500 animate-spin" />
+      </div>
+    }>
+      <GlobalSearchContent />
+    </Suspense>
   );
 }
