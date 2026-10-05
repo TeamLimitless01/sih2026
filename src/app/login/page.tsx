@@ -57,7 +57,7 @@ export default function LoginPage() {
           <h1 className="text-2xl font-bold text-center text-white mb-2">CyberForensics Hub</h1>
           <p className="text-center text-sm text-zinc-400 mb-8">Authenticate to access restricted investigation data.</p>
 
-          <form onSubmit={handleLogin} className="space-y-5">
+          <form id="login-form" onSubmit={handleLogin} className="space-y-5">
             <div className="space-y-2">
               <Label htmlFor="email" className="text-zinc-300">Agent Email ID</Label>
               <Input
@@ -100,18 +100,45 @@ export default function LoginPage() {
           </form>
 
           <div className="mt-8 pt-6 border-t border-zinc-800/50 text-center">
-            <p className="text-xs text-zinc-600 uppercase tracking-widest font-semibold">
+            <p className="text-xs text-zinc-600 uppercase tracking-widest font-semibold mb-4">
               Authorized Personnel Only
             </p>
+            
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-4">
+              <Button 
+                type="button" 
+                variant="outline" 
+                className="bg-zinc-900 border-zinc-800 text-zinc-300 hover:bg-zinc-800"
+                onClick={() => {
+                  setEmail("admin@drishti.cyber");
+                  setPassword("password123");
+                  // Small delay to allow state to update before submitting
+                  setTimeout(() => {
+                    const form = document.getElementById("login-form") as HTMLFormElement;
+                    if (form) form.requestSubmit();
+                  }, 100);
+                }}
+              >
+                Test as Admin
+              </Button>
+              <Button 
+                type="button" 
+                variant="outline"
+                className="bg-zinc-900 border-zinc-800 text-zinc-300 hover:bg-zinc-800"
+                onClick={() => {
+                  setEmail("investigator@drishti.cyber");
+                  setPassword("password123");
+                  setTimeout(() => {
+                    const form = document.getElementById("login-form") as HTMLFormElement;
+                    if (form) form.requestSubmit();
+                  }, 100);
+                }}
+              >
+                Test as Investigator
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Dev helper to show what accounts exist since we seeded the DB */}
-      <div className="mt-8 text-xs text-zinc-600 text-center max-w-sm">
-        <p className="font-semibold text-zinc-500 mb-1">Demo Credentials:</p>
-        <p>Admin: admin@cyberforensics.gov / password123</p>
-        <p>Investigator: john.investigator@cyberforensics.gov / password123</p>
       </div>
     </div>
   );
