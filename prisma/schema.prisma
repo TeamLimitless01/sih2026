@@ -1,0 +1,182 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  INVESTIGATOR
+  ANALYST
+}
+
+enum CaseStatus {
+  ACTIVE
+  CLOSED
+  ARCHIVED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum EvidenceStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum EntityType {
+  PERSON
+  PHONE
+  UPI
+  BANK_ACCOUNT
+  IFSC
+  IMEI
+  IMSI
+  IP_ADDRESS
+  EMAIL
+  DEVICE
+  LOCATION
+  TRANSACTION
+}
+
+enum EntityRole {
+  SUSPECT
+  VICTIM
+  WITNESS
+  UNKNOWN
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(INVESTIGATOR)
+  createdAt    DateTime @default(now())
+  cases        Case[]   @relation("CreatedBy")
+}
+
+model Case {
+  id          String   @id @default(cuid())
+  caseNumber  String   @unique
+  title       String
+  description String?
+  fraudType   String
+  victimName  String?
+  victimPhone String?
+  fraudAmount Float?
+  incidentDate DateTime?
+  location    String?
+  status      CaseStatus @default(ACTIVE)
+  priority    Priority   @default(MEDIUM)
+  createdById String
+  createdBy   User     @relation("CreatedBy", fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  evidence    Evidence[]
+  caseEntities CaseEntity[]
+  findings    Finding[]
+  events      InvestigationEvent[]
+}
+
+model Evidence {
+  id               String         @id @default(cuid())
+  caseId           String
+  case             Case           @relation(fields: [caseId], references: [id])
+  fileName         String
+  fileType         String         // e.g., text/csv
+  evidenceType     String         // e.g., CDR, UPI, IPDR
+  fileUrl          String
+  processingStatus EvidenceStatus @default(PENDING)
+  uploadedBy       String
+  createdAt        DateTime       @default(now())
+
+  evidenceEntities EvidenceEntity[]
+}
+
+model Entity {
+  id              String   @id @default(cuid())
+  type            EntityType
+  value           String
+  normalizedValue String   @unique // Important for cross-case correlation
+  metadata        Json?    // Stores extra info depending on type
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  caseEntities        CaseEntity[]
+  evidenceEntities    EvidenceEntity[]
+  sourceRelationships EntityRelationship[] @relation("SourceEntity")
+  targetRelationships EntityRelationship[] @relation("TargetEntity")
+  events              InvestigationEvent[]
+}
+
+model CaseEntity {
+  id       String     @id @default(cuid())
+  caseId   String
+  entityId String
+  role     EntityRole @default(UNKNOWN)
+  case     Case       @relation(fields: [caseId], references: [id])
+  entity   Entity     @relation(fields: [entityId], references: [id])
+
+  @@unique([caseId, entityId])
+}
+
+model EvidenceEntity {
+  id         String   @id @default(cuid())
+  evidenceId String
+  entityId   String
+  evidence   Evidence @relation(fields: [evidenceId], references: [id])
+  entity     Entity   @relation(fields: [entityId], references: [id])
+
+  @@unique([evidenceId, entityId])
+}
+
+model EntityRelationship {
+  id               String   @id @default(cuid())
+  sourceEntityId   String
+  targetEntityId   String
+  relationshipType String   // e.g., OWNS, USES, CALLED, LOGGED_FROM
+  confidence       Float    @default(1.0)
+  metadata         Json?
+  createdAt        DateTime @default(now())
+
+  sourceEntity Entity @relation("SourceEntity", fields: [sourceEntityId], references: [id])
+  targetEntity Entity @relation("TargetEntity", fields: [targetEntityId], references: [id])
+
+  @@unique([sourceEntityId, targetEntityId, relationshipType])
+}
+
+model Finding {
+  id          String   @id @default(cuid())
+  caseId      String
+  case        Case     @relation(fields: [caseId], references: [id])
+  type        String   // SHARED_DEVICE, RAPID_FUND_MOVEMENT
+  severity    Priority
+  title       String
+  description String
+  score       Int
+  status      String   @default("OPEN")
+  metadata    Json?    // e.g., related entity IDs, evidence IDs
+  createdAt   DateTime @default(now())
+}
+
+model InvestigationEvent {
+  id          String   @id @default(cuid())
+  caseId      String
+  case        Case     @relation(fields: [caseId], references: [id])
+  entityId    String?
+  entity      Entity?  @relation(fields: [entityId], references: [id])
+  eventType   String
+  timestamp   DateTime
+  description String
+  metadata    Json?
+}
